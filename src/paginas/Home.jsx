@@ -22,8 +22,9 @@ export const Home = () => {
             <section>
                 {productos.map(function(item, indice){
                     return (<Tarjeta key={item.id}
+                            id={ item.id }
                             titulo={ item.title }
-                            precio={ item.precio }
+                            precio={ item.price }
                             imagen={item.image}                       
                             cantidad={ item.rating.count }
                         />)

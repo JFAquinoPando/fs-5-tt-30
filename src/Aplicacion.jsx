@@ -1,7 +1,7 @@
 import { BrowserRouter as Enrutador, Route, Switch } from "react-router-dom";
-import { Menu } from "./componentes/Menu";
 import { Home } from "./paginas/Home";
 import { Contacto } from "./paginas/Contacto";
+import { Publicacion } from "./paginas/Publicacion";
 
 export function Aplicacion() {
     return (
@@ -13,8 +13,8 @@ export function Aplicacion() {
                 <Route exact path="/contacto">
                     <Contacto />
                 </Route>
-                <Route exact path="/publicacion">
-                    <></>
+                <Route exact path="/producto/:id">
+                    <Publicacion />
                 </Route>
             </Switch>
         </Enrutador>
