@@ -3,8 +3,13 @@ import { create } from 'zustand'
 export const useStore = create((set) => ({
     productos: [],
     agregar: function (item) {
-       return set((state) => ({ productos: state.productos.push(item) }))
+       set((state) => ({ productos: [...state.productos, item] }))
     },
+    vaciar: function () {
+        set((state) => ({
+            productos: []
+        }))
+    }
 }))
 
 /* function Counter() {

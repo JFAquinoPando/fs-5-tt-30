@@ -1,6 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { Menu } from "./../componentes/Menu";
 import { useEffect, useState } from "react";
+import { useStore } from "./../almacenamiento/useContexto.js";
+import Swal from 'sweetalert2'
 
 /* Componente para mostrar el detalle de una publicación / producto */
 export function Publicacion() {
@@ -17,6 +19,30 @@ export function Publicacion() {
             cantidad: 1
         }
     })
+
+    const { agregar } = useStore()
+
+    function handleClick() {
+        
+        /* alert(`Se agregó el producto ${producto.titulo}`) */
+        Swal.fire({
+            title: "¿Quieres agregar al carrito?",
+            text: `Estás por agregar a tu carrito el producto ${producto.titulo}`,
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Si",
+            denyButtonText: `No`
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                agregar(producto)
+                Swal.fire("¡Agregado!", "", "success");
+            }
+            else if (result.isDenied){
+                Swal.fire("Piénsalo mejor", "", "info");
+            }
+        });
+    }
 
     const { id } = useParams()
 
@@ -60,7 +86,7 @@ export function Publicacion() {
                     <div className="precio">${producto.titulo}</div>
                     <p className="descripcion">{producto.descripcion}</p>
                     <div className="acciones">
-                        <button type="button" className="btn-comprar">Agregar al carrito</button>
+                        <button type="button" className="btn-comprar" onClick={handleClick} >Agregar al carrito</button>
                         <Link to="/" className="btn-volver">← Volver al catálogo</Link>
                     </div>
                 </div>

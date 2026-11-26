@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function Tarjeta({
     id, titulo, precio, imagen, cantidad
 }) {
@@ -15,7 +17,7 @@ export function Tarjeta({
                 <strong>Cantidad:</strong><span>{cantidad}</span>
             </div>
             <div>
-                <a href={`/producto/${id}`}>Ver detalles</a>
+                <Link to={`/producto/${id}`}>Ver detalles</Link>
             </div>
         </div>
     </article>
